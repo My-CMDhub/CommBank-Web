@@ -8,6 +8,10 @@ import {
   setType as setTypeRedux
 } from '../../../../store/modalSlice'
 import { Card } from '../../../components/Card'
+import GoalIcon from '../../../features/goalmanager/GoalIcon';
+import { Goal } from '../../../../api/types';
+
+
 
 type Props = { id: string }
 
@@ -27,11 +31,17 @@ export default function GoalCard(props: Props) {
 
   return (
     <Container key={goal.id} onClick={onClick}>
+      {goal.icon && <GoalIcon icon={goal.icon} onClick={onClick} />}
       <TargetAmount>${goal.targetAmount}</TargetAmount>
       <TargetDate>{asLocaleDateString(goal.targetDate)}</TargetDate>
     </Container>
   )
 }
+
+const IconWrapper = styled.span`
+  font-size: 2rem;
+  margin-bottom: 1rem;
+`;
 
 const Container = styled(Card)`
   display: flex;
